@@ -23,8 +23,8 @@ graph_size = float(
 
 
 # Function to be fitted
-def diffrazione(x, N, b0, LAMBDA, x0):
-    delta_x = x0 - x
+def diffrazione(x, N, b0, LAMBDA, x_max):
+    delta_x = x_max - x
     y = d / LAMBDA * delta_x / np.sqrt(delta_x**2 + L**2)
 
     return b0 + N * np.sinc(y) ** 2
@@ -37,10 +37,10 @@ x = x * 1e-6
 # Replace zero values in yerr with a small positive number
 yerr = np.where(yerr == 0, 1e-8, yerr)
 max_index = np.argmax(y)
-x0 = x[max_index]
+x_max = x[max_index]
 N = y[max_index]
 
-P0 = [N, b0, LAMBDA, x0]
+P0 = [N, b0, LAMBDA, x_max]
 popt, pcov = curve_fit(
     diffrazione,
     x,
@@ -53,7 +53,7 @@ popt, pcov = curve_fit(
 errors = np.sqrt(np.diag(pcov))
 
 # Output fit data to a txt file
-fit_data = np.column_stack((["N", "b0", "Lambda", "x0"], popt, errors))
+fit_data = np.column_stack((["N", "b0", "Lambda", "x_max"], popt, errors))
 np.savetxt(
     f"{filename}_fit.csv",
     fit_data,
@@ -65,7 +65,7 @@ print("\nFIT PARAMS")
 print(f"N (V) = {popt[0]} +- {errors[0]}")
 print(f"b0 (V) = {popt[1]} +- {errors[1]}")
 print(f"Lambda (m) = {popt[2]} +- {errors[2]}")
-print(f"x0 (m) = {popt[3]} +- {errors[3]}")
+print(f"x_max (m) = {popt[3]} +- {errors[3]}")
 
 # Plot data and fit
 plt.margins(x=0)
