@@ -1,4 +1,3 @@
-# import libraries
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -21,15 +20,14 @@ graph_size = float(
         "Inserisci la larghezza del grafico attorno al picco (m) (0 per lasciarlo invariato): "
     )
 )
-# x0 = float(input("Inserisci la posizione del massimo del picco di diffrazione (m): "))
 
 
 # Function to be fitted
-def diffrazione(x, N, b0, LAMBDA, x0):  # y =
-    delta_x = np.abs(x - x0)
+def diffrazione(x, N, b0, LAMBDA, x0):
+    delta_x = x0 - x
     y = d / LAMBDA * delta_x / np.sqrt(delta_x**2 + L**2)
 
-    return b0 + N * np.sinc(y) ** 2  # np.sinc(x) = sin(pi*x) / (pi*x) by definition
+    return b0 + N * np.sinc(y) ** 2
 
 
 # Get dataset from file
@@ -39,17 +37,17 @@ x = x * 1e-6
 # Replace zero values in yerr with a small positive number
 yerr = np.where(yerr == 0, 1e-8, yerr)
 max_index = np.argmax(y)
-x0 = x[max_index]  # posizione del massimo del picco di diffrazione (m)
+x0 = x[max_index]
 N = y[max_index]
 
 P0 = [N, b0, LAMBDA, x0]
 popt, pcov = curve_fit(
-    diffrazione,  # function to be fitted (defined above)
+    diffrazione,
     x,
-    y,  # data
-    p0=P0,  # guessed parameters (used as starting values)
-    sigma=yerr,  # error on y
-    maxfev=50000,  # the more difficult is the function, the longer it takes to fit the data. If maxfev is too short, it gives a RuntimeError
+    y,
+    p0=P0,
+    sigma=yerr,
+    maxfev=50000,
 )
 
 errors = np.sqrt(np.diag(pcov))
@@ -79,13 +77,10 @@ if graph_size != 0:
     y = y[mask]
     yerr = yerr[mask]
 
-# plt.errorbar(x, y, yerr=yerr, linestyle=".", color="steelblue")  # uncomment to show also errorbars
 plt.plot(x, y, ".", label="Dati", color="steelblue")
 plt.plot(x, diffrazione(x, *popt), color="orange", label="Fit")
 
 plt.legend()
 plt.xlabel("Posizione (m)")
 plt.ylabel("Intensità (V)")
-plt.title(f"Fit diffrazione ({filename})")
-plt.savefig(f"./{filename}.pdf")  # --> Per salvare
-# plt.show()  # --> Per visualizzare
+plt.savefig(f"{filename}.pdf")
