@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
 from scipy.optimize import curve_fit
+
+plt.rcParams.update({"font.family": "Calibri"})
 
 # Initial parameters
 filename = input("Inserisci il nome del file: ")

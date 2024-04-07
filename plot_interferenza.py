@@ -2,6 +2,8 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
+plt.rcParams.update({"font.size": 20, "font.family": "Calibri"})
+
 folder = input("Inserisci il percorso della cartella: ")
 graph_size = float(
     input(
@@ -16,6 +18,7 @@ if not os.path.isdir(folder):
 
 
 def plot():
+    plt.figure(figsize=(8, 6))
     plt.plot(x, y, "-o", label="Dati", color="steelblue", linewidth=0.5, markersize=2)
     plt.margins(x=0)
     plt.grid(True)
