@@ -36,7 +36,7 @@ for filename in os.listdir(folder):
 
         # Plot data and fit
         plot()
-        plt.savefig(f"{filepath[:-4]}.pdf")
+        plt.savefig(f"{filepath[:-4]}.pdf", bbox_inches="tight")
         plt.close()
 
         if graph_size != 0:
@@ -47,5 +47,5 @@ for filename in os.listdir(folder):
 
             plot()
 
-            plt.savefig(f"{filepath[:-4]}_cut.pdf")
+            plt.savefig(f"{filepath[:-4]}_cut.pdf", bbox_inches="tight")
             plt.close()

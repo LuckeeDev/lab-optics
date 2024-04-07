@@ -55,7 +55,7 @@ errors = np.sqrt(np.diag(pcov))
 # Output fit data to a txt file
 fit_data = np.column_stack((["N", "b0", "Lambda", "x_max"], popt, errors))
 np.savetxt(
-    f"{filename}_fit.csv",
+    f"{filename[:-4]}_fit.csv",
     fit_data,
     fmt="%s",
     delimiter=",",
@@ -77,10 +77,11 @@ if graph_size != 0:
     y = y[mask]
     yerr = yerr[mask]
 
-plt.plot(x, y, ".", label="Dati", color="steelblue")
+plt.plot(x, y, ".", label="Dati", color="steelblue", markersize=2)
+# plt.errorbar(x, y, yerr=yerr, fmt="none", label="Dati", color="steelblue")
 plt.plot(x, diffrazione(x, *popt), color="orange", label="Fit")
 
 plt.legend()
 plt.xlabel("Posizione (m)")
 plt.ylabel("Intensità (V)")
-plt.savefig(f"{filename}.pdf")
+plt.savefig(f"{filename[:-4]}.pdf", bbox_inches="tight")
