@@ -77,11 +77,11 @@ if graph_size != 0:
     y = y[mask]
     yerr = yerr[mask]
 
-plt.plot(x, y, ".", label="Dati", color="steelblue", markersize=2)
+plt.plot(x, y, ".", label="Dati", color="steelblue")
 # plt.errorbar(x, y, yerr=yerr, fmt="none", label="Dati", color="steelblue")
 plt.plot(x, diffrazione(x, *popt), color="orange", label="Fit")
 
 plt.legend()
 plt.xlabel("Posizione (m)")
 plt.ylabel("Intensità (V)")
-plt.savefig(f"{filename[:-4]}.pdf", bbox_inches="tight")
+plt.savefig(f"{filename[:-4]}.pdf")
