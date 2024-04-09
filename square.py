@@ -36,11 +36,8 @@ axs[0, 0].plot(
     data1[1][masks[0]],
     "-o",
     color="steelblue",
-    markersize=2,
-    linewidth=0.5,
     label="Dati",
 )
-# axs[0, 0].set_title("Fenditura 1")
 axs[0, 0].set_ylabel("Intensità (V)")
 
 axs[0, 1].plot(
@@ -48,22 +45,16 @@ axs[0, 1].plot(
     data2[1][masks[1]],
     "-o",
     color="steelblue",
-    markersize=2,
-    linewidth=0.5,
     label="Dati",
 )
-# axs[0, 1].set_title("Fenditura 2")
 
 axs[1, 0].plot(
     data3[0][masks[2]] * 1e-6,
     data3[1][masks[2]],
     "-o",
     color="steelblue",
-    markersize=2,
-    linewidth=0.5,
     label="Dati",
 )
-# axs[1, 0].set_title("Fenditura 3")
 axs[1, 0].set_xlabel("Posizione (m)")
 axs[1, 0].set_ylabel("Intensità (V)")
 
@@ -72,11 +63,8 @@ axs[1, 1].plot(
     data4[1][masks[3]],
     "-o",
     color="steelblue",
-    markersize=2,
-    linewidth=0.5,
     label="Dati",
 )
-# axs[1, 1].set_title("Fenditura 4")
 axs[1, 1].set_xlabel("Posizione (m)")
 
 counter = 1
