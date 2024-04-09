@@ -52,7 +52,7 @@ axs[0, 1].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[0, 1].set_title("Fenditura 3")
+axs[0, 1].set_title("Fenditura 2")
 
 axs[1, 0].plot(
     data3[0][masks[2]] * 1e-6,
@@ -63,7 +63,7 @@ axs[1, 0].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[1, 0].set_title("Fenditura 5")
+axs[1, 0].set_title("Fenditura 3")
 axs[1, 0].set_xlabel("Posizione (m)")
 axs[1, 0].set_ylabel("Intensità (V)")
 
@@ -76,7 +76,7 @@ axs[1, 1].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[1, 1].set_title("Fenditura 6")
+axs[1, 1].set_title("Fenditura 4")
 axs[1, 1].set_xlabel("Posizione (m)")
 
 for ax in axs.flat:
