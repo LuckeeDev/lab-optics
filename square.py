@@ -28,7 +28,7 @@ for i in range(len(data)):
 
 # Create subplots
 fig, axs = plt.subplots(2, 2)
-fig.subplots_adjust(left=0.06, bottom=0.08, right=0.94, top=0.94)
+fig.subplots_adjust(left=0.06, bottom=0.08, right=0.96, top=0.97)
 
 # Plot data on subplots
 axs[0, 0].plot(
@@ -40,7 +40,7 @@ axs[0, 0].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[0, 0].set_title("Fenditura 1")
+# axs[0, 0].set_title("Fenditura 1")
 axs[0, 0].set_ylabel("Intensità (V)")
 
 axs[0, 1].plot(
@@ -52,7 +52,7 @@ axs[0, 1].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[0, 1].set_title("Fenditura 2")
+# axs[0, 1].set_title("Fenditura 2")
 
 axs[1, 0].plot(
     data3[0][masks[2]] * 1e-6,
@@ -63,7 +63,7 @@ axs[1, 0].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[1, 0].set_title("Fenditura 3")
+# axs[1, 0].set_title("Fenditura 3")
 axs[1, 0].set_xlabel("Posizione (m)")
 axs[1, 0].set_ylabel("Intensità (V)")
 
@@ -76,13 +76,15 @@ axs[1, 1].plot(
     linewidth=0.5,
     label="Dati",
 )
-axs[1, 1].set_title("Fenditura 4")
+# axs[1, 1].set_title("Fenditura 4")
 axs[1, 1].set_xlabel("Posizione (m)")
 
+counter = 1
 for ax in axs.flat:
     ax.margins(x=0)
     ax.grid(True)
-    ax.legend()
+    ax.legend(title=f"Fenditura {counter}")
+    counter += 1
 
 # Show the plot
 plt.show()
